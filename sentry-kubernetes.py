@@ -1,4 +1,5 @@
 from kubernetes import client, config, watch
+from kubernetes.client import ApiClient
 from kubernetes.client.rest import ApiException
 from raven import breadcrumbs
 from raven import Client as SentryClient
@@ -7,9 +8,6 @@ from raven.transport.threaded_requests import ThreadedRequestsHTTPTransport
 import argparse
 import logging
 import os
-from pprint import pprint
-import socket
-import sys
 import time
 
 
@@ -53,7 +51,8 @@ def main():
 
 
 def watch_loop():
-    v1 = client.CoreV1Api()
+    api_client = ApiClient()
+    v1 = client.CoreV1Api(api_client=api_client)
     w = watch.Watch()
 
     sentry = SentryClient(
