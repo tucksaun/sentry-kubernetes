@@ -1,2 +1,2 @@
 raven==6.3.0
-kubernetes==3.0.0
+kubernetes==4.0

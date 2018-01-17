@@ -51,8 +51,7 @@ def main():
 
 
 def watch_loop():
-    api_client = ApiClient()
-    v1 = client.CoreV1Api(api_client=api_client)
+    v1 = client.CoreV1Api()
     w = watch.Watch()
 
     sentry = SentryClient(
